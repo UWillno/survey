@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-09-13 16:14:52
 */
 public interface ManagerService extends IService<Manager> {
-
+    Manager login(String username, String password);
 }
