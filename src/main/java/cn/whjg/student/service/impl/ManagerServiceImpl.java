@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.whjg.student.entity.Manager;
 import cn.whjg.student.service.ManagerService;
 import cn.whjg.student.mapper.ManagerMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -22,13 +23,20 @@ public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, Manager>
     public Manager login(String username, String password) {
         LambdaQueryWrapper<Manager> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Manager::getUsername, username);
-        wrapper.eq(Manager::getPassword, password);
+//        wrapper.eq(Manager::getPassword, password);
         Manager manager = this.getOne(wrapper);
         if (manager != null) {
-            String token = UUID.randomUUID().toString() + System.currentTimeMillis();
-            manager.setToken(token);
-            this.updateById(manager);
-            manager.setPassword(null);//清空密码，安全
+            //当前密码与加密后密码比对
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            boolean result = passwordEncoder.matches(password, manager.getPassword());//传入密码与加密密码比对
+            if (result) {
+                String token = UUID.randomUUID().toString() + System.currentTimeMillis();
+                manager.setToken(token);
+                this.updateById(manager);
+                manager.setPassword(null);//清空密码，安全
+            } else {
+                manager = null;
+            }
         }
         return manager;
     }
