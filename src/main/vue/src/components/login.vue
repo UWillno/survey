@@ -1,16 +1,20 @@
 <template>
   <div id="login" style="text-align: center">
     <h1 style="text-align: center">登录</h1>
-    <el-form ref="loginForm" :model="manager" :rules="rules" label-width="100px">
-      <el-form-item prop="username" label="账号">
-        <el-input v-model="manager.username" placeholder="请输入账号"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input v-model="manager.password" placeholder="请输入密码" show-password></el-input>
-      </el-form-item>
-      <el-form-item>
+    <el-form ref="loginForm" :model="manager" :rules="rules" style="text-align: center">
+
+        <el-form-item prop="username" label="用户名" >
+          <el-input v-model="manager.username" placeholder="请输入用户名"></el-input>
+        </el-form-item>
+
+
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="manager.password" placeholder="请输入密码" show-password></el-input>
+        </el-form-item>
+
+      <el-form-item style="display: inline-block">
         <el-button type="primary" @click="login()">登录</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="reset()">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -42,15 +46,35 @@ export default {
       this.$refs.loginForm.validate().then(resp => {
         managerApi.login(this.manager.username, this.manager.password)
             .then(resp => {
-              if (resp.data.data){
-                let manager1=resp.data.data;
+              if (resp.data.data) {
+                let manager1 = resp.data.data;
                 this.$message({
-                  message:"登陆成功"
+                  message: "登陆成功" + manager1.username,
+                  type: 'success',
+                  center: true,
+                  duration: 3000
+                })
+                this.$cookie.set("token", manager1.token);
+                this.$cookie.set("username8", manager1.username);
+                this.$router.push({
+                  path: "/manager/home"
+                })
+
+              } else {
+                this.$message({
+                  message: "登陆失败",
+                  type: 'error',
+                  center: true,
+                  duration: 3000
                 })
               }
 
             })
       })
+    },
+
+    reset() {
+      this.$refs.loginForm.resetFields();
     }
   }
 }
@@ -66,7 +90,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-size: cover;
-  /*background-image: url('https://tva3.sinaimg.cn/large/0072Vf1pgy1foxkifyvznj31hc0u0e1h.jpg');*/
+  background-image: url('https://tva3.sinaimg.cn/large/0072Vf1pgy1foxkifyvznj31hc0u0e1h.jpg');
 }
 
 .el-form {
