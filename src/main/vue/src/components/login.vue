@@ -55,7 +55,7 @@ export default {
                   duration: 3000
                 })
                 this.$cookie.set("token", manager1.token);
-                this.$cookie.set("username8", manager1.username);
+                this.$cookie.set("username", manager1.username);
                 this.$router.push({
                   path: "/manager/home"
                 })
@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #login {
   width: 100%;
   height: 100%;

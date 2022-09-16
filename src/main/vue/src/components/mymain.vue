@@ -1,5 +1,5 @@
 <template>
-  <div class="mymain">主体部分</div>
+  <div class="mymain"><router-view></router-view></div>
 </template>
 
 <script>
@@ -11,5 +11,7 @@ export default {
 <style scoped>
 .mymain {
   float: left;
+
+  padding:10px;
 }
 </style>
