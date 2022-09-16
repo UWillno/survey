@@ -50,7 +50,9 @@ export default {
   /*background-color: gray;*/
   width: 250px;
   float: left;
-  height: calc(100% - 80px);
+  /*height: calc(100% - 80px);*/
+  height: 100%;
+  background-color: #f8f8f8;
 }
 
 </style>

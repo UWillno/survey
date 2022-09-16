@@ -13,7 +13,7 @@ export default {
 <style scoped>
 .mymain {
   /*float: left;*/
-
+  margin-left: 250px;
   /*padding:10px;*/
 }
 </style>

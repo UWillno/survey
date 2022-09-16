@@ -45,36 +45,32 @@ export default {
 <style scoped>
 .myheader {
   height: 80px;
+  position: relative;
   background-color: whitesmoke;
-  /*display: flex;*/
   line-height: 80px;
-  /*justify-content:   center;*/
-  /*align-items: center;*/
+  width: 100%;
+  text-align: center;
 }
 
 .title {
   font-size: 30px;
-  width: 800px;
   color: #23d1ae;
-  height: 85px;
   /*line-height: 85px;*/
-  float: left;
-  text-align: center;
   font-weight: bold;
 }
 
 .logo {
-  width: 300px;
-  height: 85px;
+  position: absolute;
+  top: 0;
+  left: 0;
   padding: 10px 0 0 10px;
-  float: left;
-  box-sizing: border-box;
+  width: 200px;
 }
 
 .welcome {
   position: absolute;
+  top: 0;
   right: 100px;
-
 }
 
 .el-dropdown-link {
