@@ -1,7 +1,7 @@
 <template>
   <div class="mynav">
     <el-menu
-        :route="true"
+        :router="true"
         :default-active="defaultActive"
         class="el-menu-vertical-demo"
         background-color="#f8f8f8"

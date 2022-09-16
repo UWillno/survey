@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController //当所有方法都返回json, 可以为类上添加注解
+@CrossOrigin(origins = {"http://127.0.0.1:9000"}, allowCredentials = "true") // 跨域
 public class TeacherController {
     @Autowired
     TeacherService teacherService;

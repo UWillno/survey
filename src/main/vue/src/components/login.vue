@@ -48,6 +48,8 @@ export default {
             .then(resp => {
               if (resp.data.data) {
                 let manager1 = resp.data.data;
+                console.log(manager1)
+
                 this.$message({
                   message: "登陆成功" + manager1.username,
                   type: 'success',
