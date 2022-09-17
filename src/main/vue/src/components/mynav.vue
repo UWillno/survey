@@ -48,10 +48,11 @@ export default {
 <style scoped>
 .mynav {
   /*background-color: gray;*/
+  z-index: 1;
   width: 250px;
   float: left;
-  /*height: calc(100% - 80px);*/
-  height: 100%;
+  text-align: center;
+  height: calc(100% - 80px);
   background-color: #f8f8f8;
 }
 

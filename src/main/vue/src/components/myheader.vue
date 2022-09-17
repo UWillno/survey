@@ -3,9 +3,6 @@
     <div class="logo"><img
         src="https://www.kaspersky.com/siterenderer/_next/static/media/kaspersky-logo.e79ac6c57fcaf0a58fbb62a8a5d56786.svg"/>
     </div>
-    <div class="title">
-      武昌首义欢迎你
-    </div>
     <div class="welcome">
       <el-dropdown @command="handleCommand">
       <span class="el-dropdown-link">
@@ -18,6 +15,9 @@
 
       </el-dropdown>
 
+    </div>
+    <div class="title">
+      武昌首义欢迎你
     </div>
   </div>
 </template>
@@ -44,33 +44,33 @@ export default {
 
 <style scoped>
 .myheader {
-  height: 80px;
+  z-index: 100;
   position: relative;
   background-color: whitesmoke;
+  height: 80px;
   line-height: 80px;
-  width: 100%;
-  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 1px 6px 2px #cfcbcb;
 }
 
 .title {
   font-size: 30px;
   color: #23d1ae;
-  /*line-height: 85px;*/
+  text-align: center;
+  margin: 0 200px;
   font-weight: bold;
 }
 
 .logo {
-  position: absolute;
-  top: 0;
-  left: 0;
+  float: left;
   padding: 10px 0 0 10px;
   width: 200px;
 }
 
 .welcome {
-  position: absolute;
-  top: 0;
-  right: 100px;
+  text-align: center;
+  width: 200px;
+  float: right;
 }
 
 .el-dropdown-link {
