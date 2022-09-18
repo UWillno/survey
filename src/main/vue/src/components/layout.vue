@@ -1,9 +1,11 @@
 <template>
-  <div style="height: 100%">
-<!--  <h1>主页</h1>-->
-  <myheader></myheader>
-  <mynav></mynav>
-  <mymain></mymain>
+  <div style="height:100%">
+    <myheader></myheader>
+    <div style="height: calc(100% - 80px);padding-top: 80px;">
+      <mynav></mynav>
+      <mymain></mymain>
+    </div>
+
   </div>
 </template>
 

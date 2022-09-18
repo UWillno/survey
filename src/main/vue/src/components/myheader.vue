@@ -1,5 +1,5 @@
 <template>
-  <div class="myheader">
+  <div class="myheader clearfix">
     <div class="logo"><img
         src="https://www.kaspersky.com/siterenderer/_next/static/media/kaspersky-logo.e79ac6c57fcaf0a58fbb62a8a5d56786.svg"/>
     </div>
@@ -45,7 +45,9 @@ export default {
 <style scoped>
 .myheader {
   z-index: 100;
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: whitesmoke;
   height: 80px;
   line-height: 80px;
