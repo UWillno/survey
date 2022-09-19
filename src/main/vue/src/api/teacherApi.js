@@ -26,9 +26,12 @@ export default {
     });
   },
   insert(data) {
-    return http.post("/teacger/insert", data);
+    return http.post("/teacher/insert", data);
   },
   update(data) {
-    return http.put("teacher/update", data);
+    return http.put("/teacher/update", data);
+  },
+  delete(id) {
+    return http.delete(`/teacher/delete/${id}`);
   },
 };

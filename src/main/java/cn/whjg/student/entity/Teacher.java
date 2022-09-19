@@ -47,7 +47,7 @@ public class Teacher implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createTime = new Date();
 
     /**
      * 状态,1正常,2休假,3离职,4退休
@@ -57,22 +57,22 @@ public class Teacher implements Serializable {
     /**
      * 逻辑删除,0正常,1删除
      */
-    private Object isDelete;
+    private Object isDelete =0;
 
     /**
      * 乐观锁
      */
-    private Integer version;
+    private Integer version = 1;
 
     /**
      * 权限等级,0为管理员,1为老师
      */
-    private Integer level;
+    private Integer level=1;
 
     /**
      * 登录令牌
      */
-    private String token;
+    private String token="";
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
