@@ -1,7 +1,7 @@
 <template>
   <div class="myheader clearfix">
     <div class="logo"><img
-        src="https://www.kaspersky.com/siterenderer/_next/static/media/kaspersky-logo.e79ac6c57fcaf0a58fbb62a8a5d56786.svg"/>
+        src="https://cdn.worldvectorlogo.com/logos/pippu.svg"/>
     </div>
     <div class="welcome">
       <el-dropdown @command="handleCommand">
@@ -67,8 +67,12 @@ export default {
   float: left;
   padding: 10px 0 0 10px;
   width: 200px;
+  height: 80px;
 }
-
+img{
+  width: 100%;
+  height: 80%;
+}
 .welcome {
   text-align: center;
   width: 200px;

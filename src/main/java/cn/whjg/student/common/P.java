@@ -9,7 +9,6 @@ import java.util.List;
 public class P {
     private long total;
     private List<?> list;
-
     public P(long total, List<Teacher> records) {
         this.total = total;
         this.list = records;
