@@ -11,13 +11,6 @@
 export default {
   name:'app',
 }
-	// import login from "@/components/login.vue"
-	// export default {
-	// 	name: 'app',
-	// 	components: {
-	// 		login
-	// 	}
-	// }
 </script>
 
 <style>

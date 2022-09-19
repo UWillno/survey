@@ -13,7 +13,7 @@ export default {
       },
     });
   },
-  select({id, teacherName, status, page, size}) {
+  select({ id, teacherName, status, page, size }) {
     console.log(id);
     return http.get("/teacher/select", {
       params: {
@@ -24,5 +24,11 @@ export default {
         size,
       },
     });
+  },
+  insert(data) {
+    return http.post("/teacger/insert", data);
+  },
+  update(data) {
+    return http.put("teacher/update", data);
   },
 };

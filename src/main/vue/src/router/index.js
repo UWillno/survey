@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import layout from "@/components/layout";
 import login from "@/components/login";
 
-const teacher = () => import("@/view/teacher");
+const teacher = () => import("@/view/teacher/teacher");
 const student = () => import("@/view/student");
 const clazz = () => import("@/view/clazz");
 const grade = () => import("@/view/grade");
