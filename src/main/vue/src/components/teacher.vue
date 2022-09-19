@@ -51,15 +51,47 @@
       </el-table-column>
     </el-table>
     <el-pagination
+        small
+        background
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :page-sizes="[5,10,20,30,40,50,100]"
         :page-size="selectForm.size"
-        background
         layout="prev, pager, next"
         :current-page="selectForm.page"
-        :total="400">
+        :total="total">
     </el-pagination>
+
+    <el-dialog title="新增" :visible.sync="dialogFormVisible" width="35%">
+      <el-form :model="teacher">
+        <el-form-item label="姓名" :label-width="formLabelWidth">
+        <el-input v-model="teacher.teacherName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="性别" :label-width="formLabelWidth">
+          <el-input v-model="teacher.gender" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号" :label-width="formLabelWidth">
+          <el-input v-model="teacher.phonenumber" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="生日" :label-width="formLabelWidth">
+          <el-input v-model="teacher.bornday" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" :label-width="formLabelWidth">
+          <el-input v-model="teacher.passowrd" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="状态" :label-width="formLabelWidth">
+          <el-input v-model="teacher.status" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible=false">取 消</el-button>
+        <el-button typeof="primary" @click="editTeacher()">确 定</el-button>
+      </div>
+    </el-dialog>
+
+
+
+
   </div>
 </template>
 
@@ -69,6 +101,7 @@ import teacherApi from "@/api/teacherApi";
 export default {
   data() {
     return {
+      total: 0,
       teacherList: [],
       statusList: [
         {id: 1, text: "正常"},
@@ -93,28 +126,43 @@ export default {
       teacherApi.select(this.selectForm)
           .then(({data}) => {
             console.log(data)
-            // this.total=data.data.total;
+            this.total = data.data.total;
             this.teacherList = data.data.list;
             this.selectForm_reset();
           })
     },
-    handleSizeChange(value){
-      this.selectForm.size=value;
+    handleSizeChange(value) {
+      this.selectForm.size = value;
       this.selectTeacher();
     },
-    handleCurrentChange(value){
-      this.selectForm.page=value;
+    handleCurrentChange(value) {
+      this.selectForm.page = value;
       this.selectTeacher();
     },
     getIndex(value) {
       return (this.selectForm.page - 1) * this.selectForm.size + value + 1
+    },
+    editTeacher(){
+      if (this.teacher.id){
+        teacherApi.update(this.teahcer).then(data=>{
+          this.$message({
+            message:"新增成功！",
+            type:'success',
+            duration:1000
+          });
+        })
+      }
     }
   },
+
+
   name: "teacher"
 }
 
 </script>
 
 <style scoped>
-
+::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: #23d1ae;
+}
 </style>

@@ -7,5 +7,11 @@ export default {
                 id, teacherName, status, page, size
             }
         })
+    },
+    update({}){
+        return http.put();
+    },
+    insert({}){
+        return http.post();
     }
 }
