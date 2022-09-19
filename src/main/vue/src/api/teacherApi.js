@@ -31,4 +31,7 @@ export default {
   update(data) {
     return http.put("teacher/update", data);
   },
+  delete(id){
+    return http.delete(`teacher/delete/${id}`)
+  }
 };
