@@ -1,10 +1,7 @@
 <template>
-  <div class="myheader">
+  <div class="myheader clearfix">
     <div class="logo"><img
         src="https://www.kaspersky.com/siterenderer/_next/static/media/kaspersky-logo.e79ac6c57fcaf0a58fbb62a8a5d56786.svg"/>
-    </div>
-    <div class="title">
-      武昌首义欢迎你
     </div>
     <div class="welcome">
       <el-dropdown @command="handleCommand">
@@ -18,6 +15,9 @@
 
       </el-dropdown>
 
+    </div>
+    <div class="title">
+      武昌首义欢迎你
     </div>
   </div>
 </template>
@@ -44,37 +44,35 @@ export default {
 
 <style scoped>
 .myheader {
-  height: 80px;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: whitesmoke;
-  /*display: flex;*/
+  height: 80px;
   line-height: 80px;
-  /*justify-content:   center;*/
-  /*align-items: center;*/
+  overflow: hidden;
+  box-shadow: 0 1px 6px 2px #cfcbcb;
 }
 
 .title {
   font-size: 30px;
-  width: 800px;
   color: #23d1ae;
-  height: 85px;
-  /*line-height: 85px;*/
-  float: left;
   text-align: center;
+  margin: 0 200px;
   font-weight: bold;
 }
 
 .logo {
-  width: 300px;
-  height: 85px;
-  padding: 10px 0 0 10px;
   float: left;
-  box-sizing: border-box;
+  padding: 10px 0 0 10px;
+  width: 200px;
 }
 
 .welcome {
-  position: absolute;
-  right: 100px;
-
+  text-align: center;
+  width: 200px;
+  float: right;
 }
 
 .el-dropdown-link {

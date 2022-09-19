@@ -12,8 +12,8 @@ export default {
 
 <style scoped>
 .mymain {
-  /*float: left;*/
-
+  padding: 20px;
+  margin-left: 250px;
   /*padding:10px;*/
 }
 </style>
