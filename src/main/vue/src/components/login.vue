@@ -1,8 +1,8 @@
 <template>
-  <div id="login" style="text-align: center">
-    <h1 style="text-align: center">登录</h1>
-    <el-form ref="loginForm" :model="manager" :rules="rules" style="text-align: center">
+  <div id="login">
 
+    <el-form ref="loginForm" :model="manager" :rules="rules" style="text-align: center">
+      <h1 style="text-align: center">登录</h1>
         <el-form-item prop="username" label="用户名" >
           <el-input v-model="manager.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
@@ -92,14 +92,17 @@ export default {
   justify-content: center;
   align-items: center;
   background-size: cover;
-  background-image: url('https://tva3.sinaimg.cn/large/0072Vf1pgy1foxkifyvznj31hc0u0e1h.jpg');
+  background: #a8ff78;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .el-form {
   border-radius: 20px;
   padding: 50px;
   width: 300px;
-  background-color: rgba(100, 100, 100, 0.5);
+  background-color: white;
 }
 
 

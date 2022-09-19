@@ -21,12 +21,10 @@ export default {
 </script>
 
 <style>
+@import "~@/assets/restes.css";
 	#app,html,body {
     margin: 0;
     padding: 0;
-		text-align: center;
-		color: #2c3e50;
-		/*margin-top: 60px;*/
     height: 100%;
 	}
 </style>
