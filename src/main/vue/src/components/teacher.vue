@@ -14,7 +14,7 @@
 
         <el-form-item style="margin-left: 10px">
           <el-button type="primary" @click="selectTeacher()">查询</el-button>
-          <el-button type="success" @click="">新增</el-button>
+          <el-button type="success" @click="teacher={},dialogFormVisible = true">新增</el-button>
         </el-form-item>
       </el-form-item>
     </el-form>
@@ -46,8 +46,23 @@
         </template>
       </el-table-column>
       <el-table-column label="操作" width="200px">
-        <el-button type="warning" @click="">修改</el-button>
-        <el-button type="danger" @click="">删除</el-button>
+        <template slot-scope="scope">
+          <el-button type="warning" @click="dialogFormVisible = true,teacher=scope.row">修改</el-button>
+          <el-popconfirm
+              @confirm="deleteTeacher(scope.row.id)"
+              confirm-button-text="确定"
+              cancel-button-text="取消"
+              confirm-button-type="danger"
+              cancel-button-type="success"
+              icon="el-icon-info"
+              icon-color="red"
+              :title="'确定要删除[ '+scope.row.teacherName+' ]老师吗？'">
+            <el-button slot="reference" type="danger" style="margin-left: 10px"
+                       @click="deleteTeacher(scope.row.id)">删除
+            </el-button>
+          </el-popconfirm>
+
+        </template>
       </el-table-column>
     </el-table>
     <el-pagination
@@ -62,10 +77,13 @@
         :total="total">
     </el-pagination>
 
-    <el-dialog title="新增" :visible.sync="dialogFormVisible" width="35%">
+    <el-dialog :title="teacher.id?'修改':'新增'" :visible.sync="dialogFormVisible" width="30%">
       <el-form :model="teacher">
+        <!--        <el-form-item label="编号" :label-width="formLabelWidth">-->
+        <!--          <el-input v-model="teacher.id" autocomplete="off"></el-input>-->
+        <!--        </el-form-item>-->
         <el-form-item label="姓名" :label-width="formLabelWidth">
-        <el-input v-model="teacher.teacherName" autocomplete="off"></el-input>
+          <el-input v-model="teacher.teacherName" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="性别" :label-width="formLabelWidth">
           <el-input v-model="teacher.gender" autocomplete="off"></el-input>
@@ -77,19 +95,17 @@
           <el-input v-model="teacher.bornday" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" :label-width="formLabelWidth">
-          <el-input v-model="teacher.passowrd" autocomplete="off"></el-input>
+          <el-input v-model="teacher.password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="状态" :label-width="formLabelWidth">
           <el-input v-model="teacher.status" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible=false">取 消</el-button>
+        <el-button @click="dialogFormVisible=false,teacher={}">取 消</el-button>
         <el-button typeof="primary" @click="editTeacher()">确 定</el-button>
       </div>
     </el-dialog>
-
-
 
 
   </div>
@@ -101,6 +117,9 @@ import teacherApi from "@/api/teacherApi";
 export default {
   data() {
     return {
+      formLabelWidth: "100px",
+      dialogFormVisible: false,
+      teacher: {},
       total: 0,
       teacherList: [],
       statusList: [
@@ -142,21 +161,37 @@ export default {
     getIndex(value) {
       return (this.selectForm.page - 1) * this.selectForm.size + value + 1
     },
-    editTeacher(){
-      if (this.teacher.id){
-        teacherApi.update(this.teahcer).then(data=>{
+    editTeacher() {
+      if (this.teacher.id) {
+        teacherApi.update(this.teacher).then(data => {
           this.$message({
-            message:"新增成功！",
-            type:'success',
-            duration:1000
+            message: "修改成功！",
+            type: 'success',
+            duration: 1000
           });
+          this.selectTeacher();
+          this.teacher = {};
         })
+      } else {
+        teacherApi.insert(this.teacher).then(data => {
+          this.$message({
+            message: "新增成功！",
+            type: 'success',
+            duration: 1000
+          });
+          this.selectTeacher();
+          this.teacher = {};
+
+        });
       }
-    }
-  },
-
-
-  name: "teacher"
+      this.dialogFormVisible = false;
+    },
+    deleteTeacher(tid) {
+      teacherApi.delete(tid);
+      this.selectTeacher();
+    },
+    name: "teacher"
+  }
 }
 
 </script>
