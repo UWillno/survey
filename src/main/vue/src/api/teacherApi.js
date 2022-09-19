@@ -8,14 +8,10 @@ export default {
             }
         })
     },
-    update(teacher){
-        return http.put("/teacher/update",teacher);
+    update({}){
+        return http.put();
     },
-    insert(teacher){
-        return http.post("/teacher/insert",teacher);
-    },
-
-    delete(id){
-        return http.delete("/teacher/delete/"+id);
+    insert({}){
+        return http.post();
     }
 }
