@@ -34,4 +34,7 @@ export default {
   delete(id) {
     return http.delete(`/teacher/delete/${id}`);
   },
+  delete(id){
+    return http.delete(`teacher/delete/${id}`)
+  }
 };
