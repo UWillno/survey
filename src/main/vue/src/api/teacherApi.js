@@ -1,11 +1,17 @@
 import http from "@/utils/request";
 
 export default {
-    list(id, teacherName, status, page, size) {
-        return http.get("/teacher/list", {
+    select({id, teacherName, status, page, size}) {
+        return http.get("/teacher/select", {
             params: {
                 id, teacherName, status, page, size
             }
         })
+    },
+    update({}){
+        return http.put();
+    },
+    insert({}){
+        return http.post();
     }
 }

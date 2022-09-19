@@ -5,7 +5,6 @@
         :default-active="defaultActive"
         class="el-menu-vertical-demo"
         background-color="#f8f8f8"
-        text-color="fff"
         active-text-color="#00a88e">
 
       <el-menu-item index="/grade/home">
