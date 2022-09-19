@@ -57,7 +57,6 @@ export default {
         .catch((_) => {});
     },
     async updataTeacher() {
-      console.log(this.teacher);
       try {
         let { data } = await teacherApi.update(this.teacher);
         if (data.code == 200) {
@@ -68,21 +67,24 @@ export default {
           });
           this.dialogVisible = false;
         }
-        console.log(data);
       } catch (error) {
         alert(error);
       }
     },
     async inserTeacher() {
-      console.log(this.teacher);
-      let { data } = await teacherApi.insert(this.teacher);
-      this.$emit("selectchile");
-      this.$message({
-        message: "修改成功",
-        type: "success",
-      });
-      this.dialogVisible = false;
-      console.log(data);
+      try {
+        let { data } = await teacherApi.insert(this.teacher);
+        if (data.code == 200) {
+          this.$emit("selectchile");
+          this.$message({
+            message: "修改成功",
+            type: "success",
+          });
+          this.dialogVisible = false;
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   watch: {
