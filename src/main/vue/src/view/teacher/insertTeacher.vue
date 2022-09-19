@@ -76,6 +76,12 @@ export default {
     async inserTeacher() {
       console.log(this.teacher);
       let { data } = await teacherApi.insert(this.teacher);
+      this.$emit("selectchile");
+      this.$message({
+        message: "修改成功",
+        type: "success",
+      });
+      this.dialogVisible = false;
       console.log(data);
     },
   },
