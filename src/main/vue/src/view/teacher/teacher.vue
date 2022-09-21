@@ -85,7 +85,7 @@
         <template slot-scope="scope">
           <el-button
             type="warning"
-            @click="(show = true), (teacher = scope.row)"
+            @click="(show = true), (teacher = {...scope.row})"
             >修改</el-button
           >
           <el-popconfirm
@@ -111,26 +111,27 @@
       :total="total"
     >
     </el-pagination>
-    <insert-teacher
+    <teacherFrom
       :show.sync="show"
-      :teacher="teacher"
+      :data-list="teacher"
       @selectchile="selectchile"
+      :status="status"
     />
   </div>
 </template>
 
 <script>
 import teacherApi from "@/api/teacherApi";
-import insertTeacher from "./insertTeacher.vue";
+import teacherFrom from "./teacherFrom.vue";
 
 export default {
-  components: { insertTeacher },
+  components: { teacherFrom },
   name: "teacher",
   data() {
     return {
       teacher: {},
       show: false,
-      total: "",
+      total: 0,
       teacherList: [],
       status: [
         { text: "正常", id: 1 },
@@ -166,7 +167,7 @@ export default {
       teacherApi.select(this.selectForm).then(({ data }) => {
         console.log(data);
         this.teacherList = data.data.list;
-        this.total = data.data.total;
+        this.total =parseInt(data.data.total) ;
       });
       this.selectForm = {
         page: 1,
@@ -188,7 +189,7 @@ export default {
       try {
         let { data } = await teacherApi.delete(id);
         console.log(data);
-        if (data.code == 200) {
+        if (data.code === 200) {
           this.$message({
             message: "删除成功",
             type: "success",
