@@ -161,11 +161,6 @@ export default {
   mounted() {
     this.selectTeacher();
   },
-  computed: {
-    AutoHigh() {
-      return;
-    },
-  },
   methods: {
     selectTeacher() {
       teacherApi.select(this.selectForm).then(({ data }) => {
