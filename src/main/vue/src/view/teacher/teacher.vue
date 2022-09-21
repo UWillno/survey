@@ -85,7 +85,7 @@
         <template slot-scope="scope">
           <el-button
             type="warning"
-            @click="(show = true), (teacher = {...scope.row})"
+            @click="(show = true), (teacher = { ...scope.row })"
             >修改</el-button
           >
           <el-popconfirm
@@ -101,7 +101,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
+    <!-- <el-pagination
       style="height: 20px"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -110,7 +110,12 @@
       layout="total, prev, pager, next"
       :total="total"
     >
-    </el-pagination>
+    </el-pagination> -->
+    <pagination
+      :selectForm="selectForm"
+      :total="total"
+      @changesize="selectchile"
+    />
     <teacherFrom
       :show.sync="show"
       :data-list="teacher"
@@ -123,9 +128,10 @@
 <script>
 import teacherApi from "@/api/teacherApi";
 import teacherFrom from "./teacherFrom.vue";
-
+import Pagination from "../../components/pagination.vue";
+import { Messages, Notifys } from "@/utils/message";
 export default {
-  components: { teacherFrom },
+  components: { teacherFrom, Pagination },
   name: "teacher",
   data() {
     return {
@@ -162,42 +168,36 @@ export default {
   mounted() {
     this.selectTeacher();
   },
+  computed: {
+    newFrom() {
+      for (const iterator in this.selectForm) {
+        if (this.selectForm[iterator] === "") {
+          delete this.selectForm[iterator];
+        }
+      }
+      return this.selectForm;
+    },
+  },
   methods: {
     selectTeacher() {
-      teacherApi.select(this.selectForm).then(({ data }) => {
-        console.log(data);
+      teacherApi.select(this.newFrom).then(({ data }) => {
         this.teacherList = data.data.list;
-        this.total =parseInt(data.data.total) ;
+        this.total = parseInt(data.data.total);
       });
-      this.selectForm = {
-        page: 1,
-        size: 8,
-      };
     },
-    handleSizeChange(value) {
-      this.selectForm.size = value;
-      this.selectTeacher();
-    },
-    handleCurrentChange(value) {
-      this.selectForm.page = value;
-      this.selectTeacher();
-    },
-    selectchile() {
+    selectchile(val = this.selectForm.page) {
+      this.selectForm.page = val;
       this.selectTeacher();
     },
     async handleConfirm(id) {
       try {
         let { data } = await teacherApi.delete(id);
-        console.log(data);
         if (data.code === 200) {
-          this.$message({
-            message: "删除成功",
-            type: "success",
-          });
+          Messages.success("删除成功");
           this.selectTeacher();
         }
       } catch (error) {
-        alert(error);
+        Notifys.error(error);
       }
     },
   },

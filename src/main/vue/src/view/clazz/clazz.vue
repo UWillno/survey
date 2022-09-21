@@ -57,8 +57,8 @@
       <el-table-column prop="status" label="状态">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.status === 1">正常</el-tag>
-          <el-tag v-if="scope.row.status === 2" type="success">毕业</el-tag>
-          <el-tag v-if="scope.row.status === 3" type="warning">实习</el-tag>
+          <el-tag v-if="scope.row.status === 2" type="success">实习</el-tag>
+          <el-tag v-if="scope.row.status === 3" type="warning">毕业</el-tag>
 
         </template>
       </el-table-column>

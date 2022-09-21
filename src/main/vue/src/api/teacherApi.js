@@ -14,7 +14,6 @@ export default {
     });
   },
   select({ id, teacherName, status, page, size }) {
-    console.log(id);
     return http.get("/teacher/select", {
       params: {
         teacherName,
