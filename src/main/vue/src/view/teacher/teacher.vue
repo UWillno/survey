@@ -48,6 +48,7 @@
         label="姓名"
         prop="teacherName"
         type="姓名"
+        width="100"
       />
       <el-table-column label="性别" prop="gender" type="性别">
         <template slot-scope="scope">
