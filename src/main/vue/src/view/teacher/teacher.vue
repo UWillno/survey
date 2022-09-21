@@ -42,8 +42,8 @@
       </el-form-item>
     </el-form>
 
-    <el-table :data="teacherList" stripe style="width: auto" :height="600">
-      <el-table-column label="序号" prop="id" width="80" />
+    <el-table :data="teacherList" stripe style="width: auto" >
+      <el-table-column label="序号" prop="id"  />
       <el-table-column
         label="姓名"
         prop="teacherName"
@@ -59,13 +59,11 @@
         label="出生日期"
         prop="bornday"
         type="出生日期"
-        width="100"
       />
       <el-table-column
         label="创建时间"
         prop="createTime"
         type="创建时间"
-        width="100"
       />
       <el-table-column label="状态" prop="status" type="状态">
         <template slot-scope="scope">
@@ -76,16 +74,16 @@
       </el-table-column>
       <el-table-column label="权限级别" prop="level" type="权限级别">
         <template slot-scope="scope">
-          <el-tag :color="levellist.get(scope.row.level)[0]">
-            {{ levellist.get(scope.row.level)[1] }}</el-tag
+          <el-tag :type="Level.get(scope.row.level)[0]">
+            {{ Level.get(scope.row.level)[1] }}</el-tag
           >
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="200px">
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
             type="warning"
-            @click="(show = true), (teacher = scope.row)"
+            @click="(show = true), (teacher = {...scope.row})"
             >修改</el-button
           >
           <el-popconfirm
@@ -111,9 +109,10 @@
       :total="total"
     >
     </el-pagination>
-    <insert-teacher
+    <teacherFrom
       :show.sync="show"
-      :teacher="teacher"
+      :dataList="teacher"
+      :status="status"
       @selectchile="selectchile"
     />
   </div>
@@ -121,16 +120,16 @@
 
 <script>
 import teacherApi from "@/api/teacherApi";
-import insertTeacher from "./insertTeacher.vue";
-
+import teacherFrom from "./teacherFrom.vue";
+import {Messages, Notifys} from "@/utils/message";
 export default {
-  components: { insertTeacher },
+  components: { teacherFrom },
   name: "teacher",
   data() {
     return {
       teacher: {},
       show: false,
-      total: "",
+      total: 0,
       teacherList: [],
       status: [
         { text: "正常", id: 1 },
@@ -148,9 +147,9 @@ export default {
         [3, ["warning", "离职"]],
         [4, ["danger", "退休"]],
       ]),
-      levellist: new Map([
-        [0, ["black", "管理员"]],
-        [1, ["pink", "老师"]],
+      Level: new Map([
+        [0, ["danger", "管理员"]],
+        [1, ["info", "老师"]],
       ]),
       selectForm: {
         page: 1,
@@ -161,17 +160,12 @@ export default {
   mounted() {
     this.selectTeacher();
   },
-  computed: {
-    AutoHigh() {
-      return;
-    },
-  },
   methods: {
     selectTeacher() {
       teacherApi.select(this.selectForm).then(({ data }) => {
         console.log(data);
         this.teacherList = data.data.list;
-        this.total = data.data.total;
+        this.total =parseInt(data.data.total) ;
       });
       this.selectForm = {
         page: 1,
@@ -193,15 +187,12 @@ export default {
       try {
         let { data } = await teacherApi.delete(id);
         console.log(data);
-        if (data.code == 200) {
-          this.$message({
-            message: "删除成功",
-            type: "success",
-          });
+        if (data.code === 200) {
+          Messages.success("删除成功")
           this.selectTeacher();
         }
       } catch (error) {
-        alert(error);
+        Notifys.error(error)
       }
     },
   },
@@ -209,7 +200,4 @@ export default {
 </script>
 
 <style scoped>
-.block {
-  height: 10px;
-}
 </style>
