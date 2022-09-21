@@ -1,10 +1,10 @@
 <template>
-  <div>学生管理</div>
+<div>班级管理</div>
 </template>
 
 <script>
 export default {
-  name: "student"
+  name: "clazz"
 }
 </script>
 

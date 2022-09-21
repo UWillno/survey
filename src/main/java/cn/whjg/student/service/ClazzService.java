@@ -1,10 +1,7 @@
 package cn.whjg.student.service;
 
-import cn.whjg.student.common.P;
 import cn.whjg.student.entity.Clazz;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.Map;
 
 /**
 * @author 何玥枫
@@ -12,5 +9,5 @@ import java.util.Map;
 * @createDate 2022-09-13 16:14:52
 */
 public interface ClazzService extends IService<Clazz> {
-    P selectPage(Map<String, Object> params);
+
 }

@@ -5,7 +5,7 @@ import login from "@/components/login";
 
 const teacher = () => import("@/view/teacher/teacher");
 const student = () => import("@/view/student");
-const clazz = () => import("@/view/clazz/clazz");
+const clazz = () => import("@/view/clazz");
 const grade = () => import("@/view/grade");
 const survey = () => import("@/view/survey");
 

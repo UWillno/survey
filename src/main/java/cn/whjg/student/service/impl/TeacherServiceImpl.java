@@ -27,7 +27,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher>
         wrapper.eq(map.containsKey("id"), Teacher::getId, map.get("id"));
         wrapper.like(map.containsKey("teacherName"), Teacher::getTeacherName, map.get("teacherName"));
         wrapper.eq(map.containsKey("status"), Teacher::getStatus, map.get("status"));
-        wrapper.orderByDesc(Teacher::getCreateTime);
+
         if (map.containsKey("page")) {
             long current = Long.parseLong(map.get("page").toString());
             long size = Long.parseLong(map.get("size").toString());

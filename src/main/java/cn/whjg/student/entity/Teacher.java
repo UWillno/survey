@@ -4,14 +4,14 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 
  * @TableName teacher
  */
-@TableName(value = "teacher")
+@TableName(value ="teacher")
 public class Teacher implements Serializable {
     /**
      * 老师id
@@ -52,27 +52,27 @@ public class Teacher implements Serializable {
     /**
      * 状态,1正常,2休假,3离职,4退休
      */
-    private Integer status = 1;
+    private Integer status;
 
     /**
      * 逻辑删除,0正常,1删除
      */
-    private Object isDelete;
+    private Object isDelete =0;
 
     /**
      * 乐观锁
      */
-    private Integer version = 0;
+    private Integer version = 1;
 
     /**
      * 权限等级,0为管理员,1为老师
      */
-    private Integer level = 1;
+    private Integer level=1;
 
     /**
      * 登录令牌
      */
-    private String token = "";
+    private String token="";
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
