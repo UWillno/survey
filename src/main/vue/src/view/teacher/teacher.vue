@@ -43,7 +43,7 @@
     </el-form>
 
     <el-table :data="teacherList" stripe style="width: auto" :height="600">
-      <el-table-column  type="index" :index="getIndex" label="序号" width="80" />
+      <el-table-column type="index" :index="getIndex" label="序号" width="80" />
       <el-table-column
         label="姓名"
         prop="teacherName"
@@ -76,7 +76,7 @@
       </el-table-column>
       <el-table-column label="权限级别" prop="level" type="权限级别">
         <template slot-scope="scope">
-          <el-tag :color="levellist.get(scope.row.level)[0]">
+          <el-tag    effect="dark" :type="levellist.get(scope.row.level)[0]">
             {{ levellist.get(scope.row.level)[1] }}</el-tag
           >
         </template>
@@ -101,16 +101,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- <el-pagination
-      style="height: 20px"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="selectForm.page"
-      :page-size="selectForm.size"
-      layout="total, prev, pager, next"
-      :total="total"
-    >
-    </el-pagination> -->
     <pagination
       :selectForm="selectForm"
       :total="total"
@@ -129,10 +119,9 @@
 import teacherApi from "@/api/teacherApi";
 import teacherFrom from "./teacherFrom.vue";
 import Pagination from "../../components/pagination.vue";
-import { Messages, Notifys } from "@/utils/message";
 import { selectForm } from "@/minxins";
 export default {
-  mixins:[selectForm],
+  mixins: [selectForm],
   components: { teacherFrom, Pagination },
   name: "teacher",
   data() {
@@ -158,13 +147,9 @@ export default {
         [4, ["danger", "退休"]],
       ]),
       levellist: new Map([
-        [0, ["black", "管理员"]],
-        [1, ["pink", "老师"]],
+        [0, ["danger", "管理员"]],
+        [1, ["success", "老师"]],
       ]),
-      // selectForm: {
-      //   page: 1,
-      //   size: 8,
-      // },
     };
   },
   mounted() {
@@ -185,11 +170,11 @@ export default {
       try {
         let { data } = await teacherApi.delete(id);
         if (data.code === 200) {
-          Messages.success("删除成功");
+          this.$messge["Messages"].success("删除成功");
           this.selectTeacher();
         }
       } catch (error) {
-        Notifys.error(error);
+        this.$messge["Notifys"].error(error);
       }
     },
   },

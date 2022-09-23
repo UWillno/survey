@@ -24,7 +24,6 @@ const selectForm = {
         page: 1,
         size: 8,
       },
-      total:0,
     };
   },
   computed: {
@@ -39,7 +38,6 @@ const selectForm = {
   },
   methods: {
     getIndex(value) {
-      console.log(value);
       return (this.selectForm.page - 1) * this.selectForm.size + value + 1;
     },
   },

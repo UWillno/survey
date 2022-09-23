@@ -11,7 +11,7 @@
         <el-form-item label="班级名称">
           <el-input v-model="dataList.className" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="班级编号">
+        <el-form-item label="年级">
           <el-input v-model="dataList.gradeId" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="状态">
@@ -44,7 +44,6 @@
 
 <script>
 import clazzApi from "@/api/clazzApi";
-import { Messages, Notifys } from "@/utils/message";
 import { DialogShow } from "@/minxins";
 
 export default {
@@ -70,11 +69,11 @@ export default {
             : await clazzApi.update(this.dataList);
         if (data.code === 200) {
           this.$emit("selectchile");
-          Messages.success("修改成功");
+          this.$messge["Messages"].success("修改成功");
           this.dialogVisible = false;
         }
       } catch (error) {
-        Notifys.error(error);
+        this.$messge["Notifys"].error(error);
       }
     },
   },
