@@ -19,7 +19,6 @@ export default {
   props: ["selectForm", "total"],
   data() {
     return {
-      total: 0,
       page: this.selectForm.page,
     };
   },
@@ -34,7 +33,7 @@ export default {
   watch: {
     page(val) {
       console.log(val);
-      this.$emit("changesize",val);
+      this.$emit("changesize", val);
     },
   },
 };

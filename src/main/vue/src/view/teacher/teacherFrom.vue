@@ -65,7 +65,7 @@
 <script>
 import {Messages, Notifys} from "@/utils/message";
 import teacherApi from "@/api/teacherApi";
-import DialogShow from "@/minxins/DialogShow";
+import {DialogShow} from "@/minxins";
 
 export default {
   mixins: [DialogShow],

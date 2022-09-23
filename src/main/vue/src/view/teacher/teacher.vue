@@ -43,7 +43,7 @@
     </el-form>
 
     <el-table :data="teacherList" stripe style="width: auto" :height="600">
-      <el-table-column label="序号" prop="id" width="80" />
+      <el-table-column  type="index" :index="getIndex" label="序号" width="80" />
       <el-table-column
         label="姓名"
         prop="teacherName"
@@ -130,7 +130,9 @@ import teacherApi from "@/api/teacherApi";
 import teacherFrom from "./teacherFrom.vue";
 import Pagination from "../../components/pagination.vue";
 import { Messages, Notifys } from "@/utils/message";
+import { selectForm } from "@/minxins";
 export default {
+  mixins:[selectForm],
   components: { teacherFrom, Pagination },
   name: "teacher",
   data() {
@@ -159,24 +161,14 @@ export default {
         [0, ["black", "管理员"]],
         [1, ["pink", "老师"]],
       ]),
-      selectForm: {
-        page: 1,
-        size: 8,
-      },
+      // selectForm: {
+      //   page: 1,
+      //   size: 8,
+      // },
     };
   },
   mounted() {
     this.selectTeacher();
-  },
-  computed: {
-    newFrom() {
-      for (const iterator in this.selectForm) {
-        if (this.selectForm[iterator] === "") {
-          delete this.selectForm[iterator];
-        }
-      }
-      return this.selectForm;
-    },
   },
   methods: {
     selectTeacher() {
