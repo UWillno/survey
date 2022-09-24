@@ -1,8 +1,8 @@
 package cn.whjg.student.controller;
 
+import cn.whjg.student.common.R;
 import cn.whjg.student.entity.Teacher;
 import cn.whjg.student.service.TeacherService;
-import cn.whjg.student.common.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

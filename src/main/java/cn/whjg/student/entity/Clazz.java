@@ -32,12 +32,12 @@ public class Clazz implements Serializable {
     /**
      * 创建修改事件
      */
-    private Date createTime;
+    private Date createTime =new Date();
 
     /**
      * 逻辑删除,0为正常,1为删除
      */
-    private Integer isDelete;
+    private Integer isDelete =1;
 
     /**
      * 班级状态,1为正常,2为实习,3为毕业
@@ -47,7 +47,7 @@ public class Clazz implements Serializable {
     /**
      * 乐观锁
      */
-    private Integer version;
+    private Integer version =0;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

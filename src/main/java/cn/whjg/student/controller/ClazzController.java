@@ -38,8 +38,8 @@ public class ClazzController {
     }
 
     @GetMapping("/clazz/select")//分页
-    public R clazzSelect(@RequestParam Map<String, Object> map) {
-        return R.OK(clazzService.selectPage(map));
+    public R clazzSelect(@RequestParam Map<String, Object> params) {
+        return R.OK(clazzService.selectPage(params));
     }
 
     @DeleteMapping("/clazz/delete/{id}")

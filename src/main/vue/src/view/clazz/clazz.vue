@@ -176,6 +176,7 @@ export default {
       return (this.selectForm.page - 1) * this.selectForm.size + value + 1;
     },
     selectClazz() {
+      console.log(this.newFrom);
       clazzApi.select(this.newFrom).then(({ data }) => {
         this.clazzList = data.data.list;
         this.selectForm.total = parseInt(data.data.total);

@@ -57,7 +57,7 @@ public class Teacher implements Serializable {
     /**
      * 逻辑删除,0正常,1删除
      */
-    private Object isDelete;
+    private Object isDelete=1;
 
     /**
      * 乐观锁

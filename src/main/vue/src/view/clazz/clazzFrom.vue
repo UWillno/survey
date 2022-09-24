@@ -12,7 +12,18 @@
           <el-input v-model="dataList.className" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="年级">
-          <el-input v-model="dataList.gradeId" autocomplete="off"></el-input>
+          <el-select
+            clearable
+            v-model="dataList.gradeId"
+            placeholder="请选择年纪"
+          >
+            <el-option
+              v-for="item in gradeList"
+              :key="item.id"
+              :label="item.gradeName"
+              :value="item.id"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="状态">
           <el-select
@@ -45,7 +56,7 @@
 <script>
 import clazzApi from "@/api/clazzApi";
 import { DialogShow } from "@/minxins";
-
+import { mapState } from "vuex";
 export default {
   mixins: [DialogShow],
   name: "classFrom",
@@ -60,8 +71,12 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState(["gradeList"]),
+  },
   methods: {
     async operate(type) {
+      console.log(this.dataList);
       try {
         let { data } =
           type === "insert"
@@ -79,5 +94,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
