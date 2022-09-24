@@ -42,7 +42,7 @@
       </el-form-item>
     </el-form>
 
-    <el-table :data="clazzList" stripe style="width: auto">
+    <el-table :data="clazzList" stripe>
       <el-table-column type="index" :index="getIndex" label="序号">
       </el-table-column>
       <el-table-column prop="className" label="班级名称"> </el-table-column>
@@ -209,4 +209,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-tag + .el-tag {
+  margin: 2px;
+}
+</style>

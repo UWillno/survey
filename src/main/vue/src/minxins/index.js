@@ -23,6 +23,7 @@ const selectForm = {
       selectForm: {
         page: 1,
         size: 8,
+        total: 0,
       },
     };
   },

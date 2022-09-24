@@ -89,7 +89,7 @@
             >修改</el-button
           >
           <el-popconfirm
-            @confirm="handleConfirm(scope.row.id)"
+            @confirm="deleteTeacher(scope.row.id)"
             confirm-button-text="好的"
             cancel-button-text="取消"
             icon="el-icon-info"
@@ -103,7 +103,7 @@
     </el-table>
     <pagination
       :selectForm="selectForm"
-      :total="total"
+      :total="this.selectForm.total"
       @changesize="selectchile"
     />
     <teacherFrom
@@ -128,7 +128,6 @@ export default {
     return {
       teacher: {},
       show: false,
-      total: 0,
       teacherList: [],
       status: [
         { text: "正常", id: 1 },
@@ -159,14 +158,14 @@ export default {
     selectTeacher() {
       teacherApi.select(this.newFrom).then(({ data }) => {
         this.teacherList = data.data.list;
-        this.total = parseInt(data.data.total);
+        this.selectForm.total = parseInt(data.data.total);
       });
     },
     selectchile(val = this.selectForm.page) {
       this.selectForm.page = val;
       this.selectTeacher();
     },
-    async handleConfirm(id) {
+    async deleteTeacher(id) {
       try {
         let { data } = await teacherApi.delete(id);
         if (data.code === 200) {
