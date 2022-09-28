@@ -1,5 +1,6 @@
 package cn.whjg.student.entity;
 
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -11,7 +12,7 @@ import java.util.Date;
  * 
  * @TableName grade
  */
-@TableName(value ="grade")
+@TableName(value = "grade")
 public class Grade implements Serializable {
     /**
      * 年级的id
@@ -27,7 +28,7 @@ public class Grade implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createTime = new Date();
 
     /**
      * 状态,1正常,2实习,3毕业
@@ -37,12 +38,12 @@ public class Grade implements Serializable {
     /**
      * 逻辑删除
      */
-    private Integer isDelete;
+    private Integer isDelete = 0;
 
     /**
      * 乐观锁
      */
-    private Integer version;
+    private Integer version = 1;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

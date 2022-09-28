@@ -1,5 +1,6 @@
 package cn.whjg.student.entity;
 
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -11,7 +12,7 @@ import java.util.Date;
  * 
  * @TableName student
  */
-@TableName(value ="student")
+@TableName(value = "student")
 public class Student implements Serializable {
     /**
      * 学生的id
@@ -57,12 +58,12 @@ public class Student implements Serializable {
     /**
      * 状态,1正常,2请假,3休学,4毕业
      */
-    private Integer status;
+    private Integer status = 1;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createTime = new Date();
 
     /**
      * 逻辑删除,0正常,1删除
@@ -72,7 +73,7 @@ public class Student implements Serializable {
     /**
      * 乐观所
      */
-    private Integer version;
+    private Integer version = 1;
 
     /**
      * 微信的唯一Id

@@ -1,6 +1,10 @@
 package cn.whjg.student.service;
 
+import cn.whjg.student.common.P;
 import cn.whjg.student.entity.Student;
+
+import java.util.Map;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-09-13 16:14:52
 */
 public interface StudentService extends IService<Student> {
+    P selectPage(Map<String, Object> params);
+
 
 }
