@@ -10,4 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ClassTeacherService extends IService<ClassTeacher> {
 
+    boolean removeTeacher(Integer cid, Integer tid);
+
 }
