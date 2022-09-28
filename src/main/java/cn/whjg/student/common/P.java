@@ -1,6 +1,5 @@
 package cn.whjg.student.common;
 
-import cn.whjg.student.entity.Teacher;
 import lombok.Data;
 
 import java.util.List;

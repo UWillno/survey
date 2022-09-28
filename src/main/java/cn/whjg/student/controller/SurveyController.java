@@ -19,28 +19,28 @@ public class SurveyController {
 
     @DeleteMapping("/survey/delete/{id}")
     public R surveyDelete(@PathVariable Integer id) {
-        return R.ok(surveyItemService.removeById(id));
+        return R.OK(surveyItemService.removeById(id));
     }
 
     @PostMapping("/survey/insert")
     public R surveyInsert(@RequestBody SurveyVo vo) {
         System.out.println(vo);
-        return R.ok(surveyItemService.insertSurvey(vo));
+        return R.OK(surveyItemService.insertSurvey(vo));
     }
 
     @PutMapping("/survey/update")
     public R surveyUpdate(@RequestBody  SurveyVo vo) {
-        return R.ok(surveyItemService.updateSurvey(vo));
+        return R.OK(surveyItemService.updateSurvey(vo));
     }
 
 //    @PutMapping("/survey/updatechecked")
 //    public R surveyUpdatechecked(@RequestBody SurveyItem surveyItem) {
-//        return R.ok(surveyItemService.updatechecked(surveyItem));
+//        return R.OK(surveyItemService.updatechecked(surveyItem));
 //    }
 
     //分页
     @GetMapping("/survey/select")
     public R surveySelect(@RequestParam Map<String, Object> map) {
-        return R.ok(surveyItemService.selectPage(map));
+        return R.OK(surveyItemService.selectPage(map));
     }
 }
